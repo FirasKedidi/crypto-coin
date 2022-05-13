@@ -1,19 +1,32 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef,useState } from 'react'
 import Chart from 'chart.js';
 import { historyOptions } from '../chartConfigs/chartConfigs';
 const HistoryChart = ({data}) => {
     const chartRef = useRef();
-    const {day,week,year,detail} =data;
+    const {day,week,year, detail} = data;
+    const [timeFormat, setTimeFormat] = useState('7d')
+    const determineTimeFormat = () => {
+        switch(timeFormat) {
+            case "24h":
+                return day
+            case "7d":
+                return week
+            case "1y":
+                return year
+            default:
+                return week
+        }
+    }
+    const unit = timeFormat == '7d' ? 'day' : ''
 
     useEffect(()=>{
         if ( chartRef && chartRef.current && detail) {
-            console.log('yeah')
             const chartInstace = new Chart(chartRef.current, {
                 type: 'line',
                 data: {
                     datasets: [{
                         label: `${detail.name} price`,
-                        data: day,
+                        data: determineTimeFormat(),
                         backgroundColor:"rgba(174,305,194,0.5)",
                         borderColor: "rgba(174,305,194,0.4",
                         pointRadius:0,
@@ -21,7 +34,26 @@ const HistoryChart = ({data}) => {
                         borderWidth: 1
                     }]
                 },
-                options: historyOptions
+                options: {
+            
+                    animation: {
+                        duration: 2000
+                    },
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        xAxes: [
+                            {
+                                type:'time',
+                                distribution: "linear",
+                                time:{
+                                    unit: unit
+                                }
+    
+                            }
+                        ] 
+                    }
+                }
             })
         }
     })
@@ -44,6 +76,11 @@ const HistoryChart = ({data}) => {
                 <div>{renderPrice()}</div>
                 <div>
                 <canvas ref={chartRef} id="myChart" width={250} height={250}></canvas>
+            </div>
+            <div className="chart-button mt-1">
+                <button onClick={()=> setTimeFormat("24h")} className="btn btn-outline-secondary btn-sm">24h</button>
+                <button onClick={()=> setTimeFormat("7d")} className="btn btn-outline-secondary btn-sm mx-1">7d</button>
+                <button onClick={()=> setTimeFormat("1y")} className="btn btn-outline-secondary btn-sm">1y</button>
             </div>
             </div>
             

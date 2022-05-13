@@ -1,4 +1,4 @@
-export const historyOptions = {
+export const historyOptions  = {
     lineHeightAnnotation: {
         always: true,
         hover: false,
@@ -13,7 +13,7 @@ export const historyOptions = {
         xAxes: [
             {
                 type:'time',
-                distribution: "linear"
+                distribution: "linear",
             }
         ] 
     }
