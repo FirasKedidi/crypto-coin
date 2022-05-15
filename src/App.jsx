@@ -6,7 +6,7 @@ import Header from './components/Header';
 import './App.css'
 
 const App = () => {
-    const [watchList, setWatchList] = useState(["bitcoin","ethereum","ripple","algorand"])
+    const [watchList, setWatchList] = useState(["bitcoin","ethereum","ripple","algorand","Tether","USD Coin","BNB","XRP","Cardano","Solana","Dogecoin","Shiba Inu","Dai","Litecoin"])
     return (
         <div className='container'>
         

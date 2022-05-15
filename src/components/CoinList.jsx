@@ -14,6 +14,7 @@ const CoinList = ({watchList,setWatchList}) => {
    
     useEffect(()=>{
         const fetchData = async () =>{
+            
             setIsLoading(true)
             const response = await coinGecko.get("/coins/markets", {
                 params:{
@@ -25,7 +26,7 @@ const CoinList = ({watchList,setWatchList}) => {
             setIsLoading(false)
 
         }
-       
+        
         watchList.length > 0 ? fetchData() : setCoins([])
         
     },[watchList])

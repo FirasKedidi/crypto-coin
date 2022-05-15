@@ -4,7 +4,7 @@ import { historyOptions } from '../chartConfigs/chartConfigs';
 const HistoryChart = ({data}) => {
     const chartRef = useRef();
     const {day,week,year, detail} = data;
-    const [timeFormat, setTimeFormat] = useState('7d')
+    const [timeFormat, setTimeFormat] = useState('24h')
     const determineTimeFormat = () => {
         switch(timeFormat) {
             case "24h":
@@ -14,7 +14,7 @@ const HistoryChart = ({data}) => {
             case "1y":
                 return year
             default:
-                return week
+                return day
         }
     }
     const unit = timeFormat == '7d' ? 'day' : ''
