@@ -11,7 +11,7 @@ const CoinList = ({watchList,setWatchList}) => {
              {return el !== id}))
 
     }
-   
+    
     useEffect(()=>{
         const fetchData = async () =>{
             
