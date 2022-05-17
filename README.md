@@ -1,4 +1,4 @@
-# Crypto currency app :smiley: 🎉 🦄 :white_check_mark: :moneybag:
+# Crypto currency app :smiley: :chart_with_upwards_trend: :moneybag: :cat:
 A web application that shows most used crypto currencies and their value through time.
 
 * The application is Build using mainly **React** and **Javascript** with modern practices like hooks, functional components and arrow functions.
